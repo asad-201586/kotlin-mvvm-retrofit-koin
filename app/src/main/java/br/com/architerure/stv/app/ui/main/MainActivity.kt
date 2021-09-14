@@ -2,7 +2,6 @@ package br.com.architerure.stv.app.ui.main
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -79,7 +78,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun configError() {
         moviesViewModel.errors.observe(this, Observer {
-            if (!it.errors.isEmpty()) {
+            if (it.errors.isNotEmpty()) {
                 hideProgress()
                 this.Alert("Erros", it.toString()) {
                     moviesViewModel.errorsClear()
@@ -125,12 +124,12 @@ class MainActivity : AppCompatActivity() {
 
     //region MainNavegation
 
-    fun showProgress() {
+    private fun showProgress() {
         isLoading = true
         frame_progress.visibility = View.VISIBLE
     }
 
-    fun hideProgress() {
+    private fun hideProgress() {
         isLoading = false
         frame_progress.visibility = View.GONE
     }
